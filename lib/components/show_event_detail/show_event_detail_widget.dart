@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/components/edit_event/edit_event_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -118,7 +119,10 @@ class _ShowEventDetailWidgetState extends State<ShowEventDetailWidget> {
                                     },
                                   ),
                                   Text(
-                                    widget.title!,
+                                    valueOrDefault<String>(
+                                      widget.title,
+                                      'none',
+                                    ),
                                     style: FlutterFlowTheme.of(context).title1,
                                   ),
                                 ],
@@ -137,8 +141,27 @@ class _ShowEventDetailWidgetState extends State<ShowEventDetailWidget> {
                           color: FlutterFlowTheme.of(context).secondaryText,
                           size: 24.0,
                         ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
+                        onPressed: () async {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 1.0,
+                                  child: EditEventWidget(
+                                    title: widget.title,
+                                    friend: widget.withfriend?.toList(),
+                                    detail: widget.detail,
+                                    location: 'none',
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
                         },
                       ),
                     ],
@@ -239,20 +262,28 @@ class _ShowEventDetailWidgetState extends State<ShowEventDetailWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Text(
-                                              listViewUsersRecord.displayName!,
+                                              valueOrDefault<String>(
+                                                listViewUsersRecord.displayName,
+                                                'none',
+                                              ),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText1,
                                             ),
                                           ),
-                                        SizedBox(
-                                          height: 100.0,
-                                          child: VerticalDivider(
-                                            thickness: 3.0,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryColor,
+                                        if (widget.withfriend?.contains(
+                                                listViewUsersRecord
+                                                    .reference) ??
+                                            true)
+                                          SizedBox(
+                                            height: 100.0,
+                                            child: VerticalDivider(
+                                              thickness: 3.0,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
+                                            ),
                                           ),
-                                        ),
                                       ],
                                     );
                                   },
@@ -273,6 +304,10 @@ class _ShowEventDetailWidgetState extends State<ShowEventDetailWidget> {
                                       fontSize: 20.0,
                                       fontWeight: FontWeight.w500,
                                     ),
+                          ),
+                          Text(
+                            widget.detail!,
+                            style: FlutterFlowTheme.of(context).bodyText1,
                           ),
                         ],
                       ),

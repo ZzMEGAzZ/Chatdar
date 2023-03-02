@@ -9,7 +9,8 @@ part of 'serializers.dart';
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ChatMessagesRecord.serializer)
       ..add(ChatsRecord.serializer)
-      ..add(TodoRecord.serializer)
+      ..add(EventDetailRecord.serializer)
+      ..add(EventScheduleRecord.serializer)
       ..add(UsersRecord.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [

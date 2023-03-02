@@ -4,7 +4,7 @@ export '/pages/sign_up_page/sign_up_page_widget.dart' show SignUpPageWidget;
 export '/pages/sign_in_page/sign_in_page_widget.dart' show SignInPageWidget;
 export '/pages/chat_page/chat_page_widget.dart' show ChatPageWidget;
 export '/pages/all_chat_page/all_chat_page_widget.dart' show AllChatPageWidget;
-export '/pages/calendar_page/calendar_page_widget.dart' show CalendarPageWidget;
+export '/pages/event_page/event_page_widget.dart' show EventPageWidget;
 export '/pages/add_member_chat/add_member_chat_widget.dart'
     show AddMemberChatWidget;
 export '/pages/forgot_password_page/forgot_password_page_widget.dart'

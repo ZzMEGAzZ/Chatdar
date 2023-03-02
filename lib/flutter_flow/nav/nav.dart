@@ -112,11 +112,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : AllChatPageWidget(),
             ),
             FFRoute(
-              name: 'CalendarPage',
-              path: 'calendarPage',
+              name: 'EventPage',
+              path: 'eventPage',
               builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'CalendarPage')
-                  : CalendarPageWidget(
+                  ? NavBarPage(initialPage: 'EventPage')
+                  : EventPageWidget(
                       selectDay:
                           params.getParam('selectDay', ParamType.DateTime),
                     ),

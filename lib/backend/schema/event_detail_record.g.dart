@@ -1,21 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'todo_record.dart';
+part of 'event_detail_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<TodoRecord> _$todoRecordSerializer = new _$TodoRecordSerializer();
+Serializer<EventDetailRecord> _$eventDetailRecordSerializer =
+    new _$EventDetailRecordSerializer();
 
-class _$TodoRecordSerializer implements StructuredSerializer<TodoRecord> {
+class _$EventDetailRecordSerializer
+    implements StructuredSerializer<EventDetailRecord> {
   @override
-  final Iterable<Type> types = const [TodoRecord, _$TodoRecord];
+  final Iterable<Type> types = const [EventDetailRecord, _$EventDetailRecord];
   @override
-  final String wireName = 'TodoRecord';
+  final String wireName = 'EventDetailRecord';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, TodoRecord object,
+  Iterable<Object?> serialize(Serializers serializers, EventDetailRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
@@ -32,13 +34,6 @@ class _$TodoRecordSerializer implements StructuredSerializer<TodoRecord> {
         ..add('description')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
-    }
-    value = object.date;
-    if (value != null) {
-      result
-        ..add('date')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
     }
     value = object.isDone;
     if (value != null) {
@@ -80,6 +75,27 @@ class _$TodoRecordSerializer implements StructuredSerializer<TodoRecord> {
                   DocumentReference, const [const FullType.nullable(Object)])
             ])));
     }
+    value = object.location;
+    if (value != null) {
+      result
+        ..add('location')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.dateStart;
+    if (value != null) {
+      result
+        ..add('date_start')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.dateEnd;
+    if (value != null) {
+      result
+        ..add('date_end')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -92,9 +108,10 @@ class _$TodoRecordSerializer implements StructuredSerializer<TodoRecord> {
   }
 
   @override
-  TodoRecord deserialize(Serializers serializers, Iterable<Object?> serialized,
+  EventDetailRecord deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new TodoRecordBuilder();
+    final result = new EventDetailRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -109,10 +126,6 @@ class _$TodoRecordSerializer implements StructuredSerializer<TodoRecord> {
         case 'description':
           result.description = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
-          break;
-        case 'date':
-          result.date = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'is_done':
           result.isDone = serializers.deserialize(value,
@@ -141,6 +154,18 @@ class _$TodoRecordSerializer implements StructuredSerializer<TodoRecord> {
                     DocumentReference, const [const FullType.nullable(Object)])
               ]))! as BuiltList<Object?>);
           break;
+        case 'location':
+          result.location = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'date_start':
+          result.dateStart = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
+        case 'date_end':
+          result.dateEnd = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -154,13 +179,11 @@ class _$TodoRecordSerializer implements StructuredSerializer<TodoRecord> {
   }
 }
 
-class _$TodoRecord extends TodoRecord {
+class _$EventDetailRecord extends EventDetailRecord {
   @override
   final String? title;
   @override
   final String? description;
-  @override
-  final DateTime? date;
   @override
   final bool? isDone;
   @override
@@ -172,42 +195,54 @@ class _$TodoRecord extends TodoRecord {
   @override
   final BuiltList<DocumentReference<Object?>>? views;
   @override
+  final String? location;
+  @override
+  final DateTime? dateStart;
+  @override
+  final DateTime? dateEnd;
+  @override
   final DocumentReference<Object?>? ffRef;
 
-  factory _$TodoRecord([void Function(TodoRecordBuilder)? updates]) =>
-      (new TodoRecordBuilder()..update(updates))._build();
+  factory _$EventDetailRecord(
+          [void Function(EventDetailRecordBuilder)? updates]) =>
+      (new EventDetailRecordBuilder()..update(updates))._build();
 
-  _$TodoRecord._(
+  _$EventDetailRecord._(
       {this.title,
       this.description,
-      this.date,
       this.isDone,
       this.userImage,
       this.createdBy,
       this.items,
       this.views,
+      this.location,
+      this.dateStart,
+      this.dateEnd,
       this.ffRef})
       : super._();
 
   @override
-  TodoRecord rebuild(void Function(TodoRecordBuilder) updates) =>
+  EventDetailRecord rebuild(void Function(EventDetailRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  TodoRecordBuilder toBuilder() => new TodoRecordBuilder()..replace(this);
+  EventDetailRecordBuilder toBuilder() =>
+      new EventDetailRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is TodoRecord &&
+    return other is EventDetailRecord &&
         title == other.title &&
         description == other.description &&
-        date == other.date &&
         isDone == other.isDone &&
         userImage == other.userImage &&
         createdBy == other.createdBy &&
         items == other.items &&
         views == other.views &&
+        location == other.location &&
+        dateStart == other.dateStart &&
+        dateEnd == other.dateEnd &&
         ffRef == other.ffRef;
   }
 
@@ -220,35 +255,42 @@ class _$TodoRecord extends TodoRecord {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc(0, title.hashCode),
-                                    description.hashCode),
-                                date.hashCode),
-                            isDone.hashCode),
-                        userImage.hashCode),
-                    createdBy.hashCode),
-                items.hashCode),
-            views.hashCode),
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, title.hashCode),
+                                            description.hashCode),
+                                        isDone.hashCode),
+                                    userImage.hashCode),
+                                createdBy.hashCode),
+                            items.hashCode),
+                        views.hashCode),
+                    location.hashCode),
+                dateStart.hashCode),
+            dateEnd.hashCode),
         ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'TodoRecord')
+    return (newBuiltValueToStringHelper(r'EventDetailRecord')
           ..add('title', title)
           ..add('description', description)
-          ..add('date', date)
           ..add('isDone', isDone)
           ..add('userImage', userImage)
           ..add('createdBy', createdBy)
           ..add('items', items)
           ..add('views', views)
+          ..add('location', location)
+          ..add('dateStart', dateStart)
+          ..add('dateEnd', dateEnd)
           ..add('ffRef', ffRef))
         .toString();
   }
 }
 
-class TodoRecordBuilder implements Builder<TodoRecord, TodoRecordBuilder> {
-  _$TodoRecord? _$v;
+class EventDetailRecordBuilder
+    implements Builder<EventDetailRecord, EventDetailRecordBuilder> {
+  _$EventDetailRecord? _$v;
 
   String? _title;
   String? get title => _$this._title;
@@ -257,10 +299,6 @@ class TodoRecordBuilder implements Builder<TodoRecord, TodoRecordBuilder> {
   String? _description;
   String? get description => _$this._description;
   set description(String? description) => _$this._description = description;
-
-  DateTime? _date;
-  DateTime? get date => _$this._date;
-  set date(DateTime? date) => _$this._date = date;
 
   bool? _isDone;
   bool? get isDone => _$this._isDone;
@@ -285,25 +323,39 @@ class TodoRecordBuilder implements Builder<TodoRecord, TodoRecordBuilder> {
   set views(ListBuilder<DocumentReference<Object?>>? views) =>
       _$this._views = views;
 
+  String? _location;
+  String? get location => _$this._location;
+  set location(String? location) => _$this._location = location;
+
+  DateTime? _dateStart;
+  DateTime? get dateStart => _$this._dateStart;
+  set dateStart(DateTime? dateStart) => _$this._dateStart = dateStart;
+
+  DateTime? _dateEnd;
+  DateTime? get dateEnd => _$this._dateEnd;
+  set dateEnd(DateTime? dateEnd) => _$this._dateEnd = dateEnd;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
-  TodoRecordBuilder() {
-    TodoRecord._initializeBuilder(this);
+  EventDetailRecordBuilder() {
+    EventDetailRecord._initializeBuilder(this);
   }
 
-  TodoRecordBuilder get _$this {
+  EventDetailRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _title = $v.title;
       _description = $v.description;
-      _date = $v.date;
       _isDone = $v.isDone;
       _userImage = $v.userImage;
       _createdBy = $v.createdBy;
       _items = $v.items?.toBuilder();
       _views = $v.views?.toBuilder();
+      _location = $v.location;
+      _dateStart = $v.dateStart;
+      _dateEnd = $v.dateEnd;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -311,32 +363,34 @@ class TodoRecordBuilder implements Builder<TodoRecord, TodoRecordBuilder> {
   }
 
   @override
-  void replace(TodoRecord other) {
+  void replace(EventDetailRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$TodoRecord;
+    _$v = other as _$EventDetailRecord;
   }
 
   @override
-  void update(void Function(TodoRecordBuilder)? updates) {
+  void update(void Function(EventDetailRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  TodoRecord build() => _build();
+  EventDetailRecord build() => _build();
 
-  _$TodoRecord _build() {
-    _$TodoRecord _$result;
+  _$EventDetailRecord _build() {
+    _$EventDetailRecord _$result;
     try {
       _$result = _$v ??
-          new _$TodoRecord._(
+          new _$EventDetailRecord._(
               title: title,
               description: description,
-              date: date,
               isDone: isDone,
               userImage: userImage,
               createdBy: createdBy,
               items: _items?.build(),
               views: _views?.build(),
+              location: location,
+              dateStart: dateStart,
+              dateEnd: dateEnd,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
@@ -347,7 +401,7 @@ class TodoRecordBuilder implements Builder<TodoRecord, TodoRecordBuilder> {
         _views?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'TodoRecord', _$failedField, e.toString());
+            r'EventDetailRecord', _$failedField, e.toString());
       }
       rethrow;
     }

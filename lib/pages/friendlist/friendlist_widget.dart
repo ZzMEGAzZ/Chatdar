@@ -58,40 +58,113 @@ class _FriendlistWidgetState extends State<FriendlistWidget> {
                   child: TopProfileWidget(),
                 ),
               ),
-              Stack(
-                children: [
-                  Align(
-                    alignment: AlignmentDirectional(0.0, -0.25),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFDEC0A3),
+              Expanded(
+                child: DefaultTabController(
+                  length: 2,
+                  initialIndex: 0,
+                  child: Column(
+                    children: [
+                      TabBar(
+                        labelColor: FlutterFlowTheme.of(context).primaryColor,
+                        labelStyle: FlutterFlowTheme.of(context).bodyText1,
+                        indicatorColor:
+                            FlutterFlowTheme.of(context).secondaryColor,
+                        tabs: [
+                          Tab(
+                            text: 'Example 1',
+                          ),
+                          Tab(
+                            text: 'Example 2',
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
-                      height: MediaQuery.of(context).size.height * 0.75,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(0.0),
-                          bottomRight: Radius.circular(0.0),
-                          topLeft: Radius.circular(50.0),
-                          topRight: Radius.circular(50.0),
+                      Expanded(
+                        child: TabBarView(
+                          children: [
+                            Stack(
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(0.0, -0.25),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 1.0,
+                                    height: 50.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFDEC0A3),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 1.0,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.75,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(50.0),
+                                        topRight: Radius.circular(50.0),
+                                      ),
+                                    ),
+                                    child: wrapWithModel(
+                                      model: _model.friendModel1,
+                                      updateCallback: () => setState(() {}),
+                                      child: FriendWidget(),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Stack(
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(0.0, -0.25),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 1.0,
+                                    height: 50.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFDEC0A3),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 1.0,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.75,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(0.0),
+                                        bottomRight: Radius.circular(0.0),
+                                        topLeft: Radius.circular(50.0),
+                                        topRight: Radius.circular(50.0),
+                                      ),
+                                    ),
+                                    child: wrapWithModel(
+                                      model: _model.friendModel2,
+                                      updateCallback: () => setState(() {}),
+                                      child: FriendWidget(),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                      child: wrapWithModel(
-                        model: _model.friendModel,
-                        updateCallback: () => setState(() {}),
-                        child: FriendWidget(),
-                      ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 1.0,

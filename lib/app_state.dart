@@ -36,16 +36,28 @@ class FFAppState extends ChangeNotifier {
     _selectDate = _value;
   }
 
-  DateTime? _DefaultDate = DateTime.fromMillisecondsSinceEpoch(1672506000000);
-  DateTime? get DefaultDate => _DefaultDate;
-  set DefaultDate(DateTime? _value) {
-    _DefaultDate = _value;
-  }
-
   bool _CalendarShowState = false;
   bool get CalendarShowState => _CalendarShowState;
   set CalendarShowState(bool _value) {
     _CalendarShowState = _value;
+  }
+
+  List<String> _selectFriend = [];
+  List<String> get selectFriend => _selectFriend;
+  set selectFriend(List<String> _value) {
+    _selectFriend = _value;
+  }
+
+  void addToSelectFriend(String _value) {
+    _selectFriend.add(_value);
+  }
+
+  void removeFromSelectFriend(String _value) {
+    _selectFriend.remove(_value);
+  }
+
+  void removeAtIndexFromSelectFriend(int _index) {
+    _selectFriend.removeAt(_index);
   }
 }
 

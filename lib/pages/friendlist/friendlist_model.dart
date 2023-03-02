@@ -12,18 +12,22 @@ class FriendlistModel extends FlutterFlowModel {
   // Model for TopProfile component.
   late TopProfileModel topProfileModel;
   // Model for Friend component.
-  late FriendModel friendModel;
+  late FriendModel friendModel1;
+  // Model for Friend component.
+  late FriendModel friendModel2;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
     topProfileModel = createModel(context, () => TopProfileModel());
-    friendModel = createModel(context, () => FriendModel());
+    friendModel1 = createModel(context, () => FriendModel());
+    friendModel2 = createModel(context, () => FriendModel());
   }
 
   void dispose() {
     topProfileModel.dispose();
-    friendModel.dispose();
+    friendModel1.dispose();
+    friendModel2.dispose();
   }
 
   /// Additional helper methods are added here.

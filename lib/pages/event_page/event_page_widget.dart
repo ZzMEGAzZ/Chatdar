@@ -1,17 +1,17 @@
-import '/components/add_event/add_event_widget.dart';
+import '/components/schedule/schedule_widget.dart';
+import '/components/start_date_picker/start_date_picker_widget.dart';
 import '/components/top_profile/top_profile_widget.dart';
-import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'calendar_page_model.dart';
-export 'calendar_page_model.dart';
+import 'event_page_model.dart';
+export 'event_page_model.dart';
 
-class CalendarPageWidget extends StatefulWidget {
-  const CalendarPageWidget({
+class EventPageWidget extends StatefulWidget {
+  const EventPageWidget({
     Key? key,
     this.selectDay,
   }) : super(key: key);
@@ -19,11 +19,11 @@ class CalendarPageWidget extends StatefulWidget {
   final DateTime? selectDay;
 
   @override
-  _CalendarPageWidgetState createState() => _CalendarPageWidgetState();
+  _EventPageWidgetState createState() => _EventPageWidgetState();
 }
 
-class _CalendarPageWidgetState extends State<CalendarPageWidget> {
-  late CalendarPageModel _model;
+class _EventPageWidgetState extends State<EventPageWidget> {
+  late EventPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
@@ -31,7 +31,7 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CalendarPageModel());
+    _model = createModel(context, () => EventPageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -60,6 +60,31 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFDEC0A3),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            context: context,
+            builder: (context) {
+              return Padding(
+                padding: MediaQuery.of(context).viewInsets,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 1.0,
+                  child: StartDatePickerWidget(),
+                ),
+              );
+            },
+          ).then((value) => setState(() {}));
+        },
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        elevation: 10.0,
+        label: Icon(
+          Icons.add,
+          color: FlutterFlowTheme.of(context).primaryBtnText,
+          size: 24.0,
+        ),
+      ),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
@@ -107,42 +132,10 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
                             topRight: Radius.circular(50.0),
                           ),
                         ),
-                        child: FlutterFlowCalendar(
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          weekFormat: false,
-                          weekStartsMonday: false,
-                          rowHeight: 100.0,
-                          onChange: (DateTimeRange? newSelectedDate) async {
-                            _model.calendarSelectedDay = newSelectedDate;
-                            if (FFAppState().CalendarShowState) {
-                              setState(() {
-                                FFAppState().selectDate =
-                                    _model.calendarSelectedDay?.start;
-                              });
-                              showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                context: context,
-                                builder: (context) {
-                                  return Padding(
-                                    padding: MediaQuery.of(context).viewInsets,
-                                    child: Container(
-                                      height: double.infinity,
-                                      child: AddEventWidget(
-                                        date: _model.calendarSelectedDay?.start,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => setState(() {}));
-                            }
-                            setState(() {});
-                          },
-                          titleStyle: TextStyle(),
-                          dayOfWeekStyle: TextStyle(),
-                          dateStyle: TextStyle(),
-                          selectedDateStyle: TextStyle(),
-                          inactiveDateStyle: TextStyle(),
+                        child: wrapWithModel(
+                          model: _model.scheduleModel,
+                          updateCallback: () => setState(() {}),
+                          child: ScheduleWidget(),
                         ),
                       ),
                     ),

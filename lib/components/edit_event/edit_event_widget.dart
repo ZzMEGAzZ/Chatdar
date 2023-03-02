@@ -1,39 +1,35 @@
-import '/auth/auth_util.dart';
-import '/backend/backend.dart';
+import '/components/friend/friend_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'add_event_deatail_model.dart';
-export 'add_event_deatail_model.dart';
+import 'edit_event_model.dart';
+export 'edit_event_model.dart';
 
-class AddEventDeatailWidget extends StatefulWidget {
-  const AddEventDeatailWidget({
+class EditEventWidget extends StatefulWidget {
+  const EditEventWidget({
     Key? key,
     this.title,
     this.friend,
     this.detail,
     this.location,
-    this.date,
   }) : super(key: key);
 
   final String? title;
   final List<DocumentReference>? friend;
   final String? detail;
   final String? location;
-  final DateTime? date;
 
   @override
-  _AddEventDeatailWidgetState createState() => _AddEventDeatailWidgetState();
+  _EditEventWidgetState createState() => _EditEventWidgetState();
 }
 
-class _AddEventDeatailWidgetState extends State<AddEventDeatailWidget> {
-  late AddEventDeatailModel _model;
+class _EditEventWidgetState extends State<EditEventWidget> {
+  late EditEventModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -44,11 +40,10 @@ class _AddEventDeatailWidgetState extends State<AddEventDeatailWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AddEventDeatailModel());
+    _model = createModel(context, () => EditEventModel());
 
-    _model.titleController ??= TextEditingController();
-    _model.detailController ??= TextEditingController();
-    _model.locationController ??= TextEditingController();
+    _model.textController1 ??= TextEditingController(text: widget.detail);
+    _model.textController2 ??= TextEditingController();
   }
 
   @override
@@ -127,9 +122,8 @@ class _AddEventDeatailWidgetState extends State<AddEventDeatailWidget> {
                                     },
                                   ),
                                   Text(
-                                    dateTimeFormat('d/M/y', widget.date),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
+                                    'Heading',
+                                    style: FlutterFlowTheme.of(context).title1,
                                   ),
                                 ],
                               ),
@@ -158,155 +152,64 @@ class _AddEventDeatailWidgetState extends State<AddEventDeatailWidget> {
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 10.0, 0.0),
-                            child: Text(
-                              'Title:',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
+                          Text(
+                            'Date: ',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                           ),
-                          Expanded(
-                            child: TextFormField(
-                              controller: _model.titleController,
-                              autofocus: true,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                hintText: '[Some hint text...]',
-                                hintStyle:
-                                    FlutterFlowTheme.of(context).bodyText2,
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                errorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                              validator: _model.titleControllerValidator
-                                  .asValidator(context),
+                          Text(
+                            valueOrDefault<String>(
+                              dateTimeFormat('d/M/y', FFAppState().selectDate),
+                              '1/1/1970',
                             ),
+                            style: FlutterFlowTheme.of(context).bodyText1,
                           ),
                         ],
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 10.0, 0.0),
-                            child: Text(
-                              'With:',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ),
-                          StreamBuilder<List<UsersRecord>>(
-                            stream: queryUsersRecord(),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
+                          Text(
+                            'With:',
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                  ),
-                                );
-                              }
-                              List<UsersRecord> containerUsersRecordList =
-                                  snapshot.data!;
-                              return Container(
-                                width: 300.0,
-                                height: 30.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                                child: Builder(
-                                  builder: (context) {
-                                    final friendsView = FFAppState()
-                                        .selectFriend
-                                        .map((e) => e)
-                                        .toList();
-                                    return ListView.builder(
-                                      padding: EdgeInsets.zero,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: friendsView.length,
-                                      itemBuilder: (context, friendsViewIndex) {
-                                        final friendsViewItem =
-                                            friendsView[friendsViewIndex];
-                                        return Text(
-                                          friendsViewItem,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1,
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
-                              );
-                            },
                           ),
                           FlutterFlowIconButton(
                             borderColor: Colors.transparent,
+                            borderRadius: 30.0,
                             borderWidth: 1.0,
                             buttonSize: 40.0,
                             icon: Icon(
                               Icons.add,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 20.0,
+                              color: FlutterFlowTheme.of(context).customColor1,
+                              size: 30.0,
                             ),
                             onPressed: () async {
-                              setState(() {});
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.of(context).viewInsets,
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.8,
+                                      child: FriendWidget(),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
                             },
                           ),
                         ],
@@ -328,7 +231,7 @@ class _AddEventDeatailWidgetState extends State<AddEventDeatailWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
                               child: TextFormField(
-                                controller: _model.detailController,
+                                controller: _model.textController1,
                                 autofocus: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -377,7 +280,7 @@ class _AddEventDeatailWidgetState extends State<AddEventDeatailWidget> {
                                   ),
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
-                                validator: _model.detailControllerValidator
+                                validator: _model.textController1Validator
                                     .asValidator(context),
                               ),
                             ),
@@ -401,7 +304,7 @@ class _AddEventDeatailWidgetState extends State<AddEventDeatailWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
                               child: TextFormField(
-                                controller: _model.locationController,
+                                controller: _model.textController2,
                                 autofocus: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -450,73 +353,9 @@ class _AddEventDeatailWidgetState extends State<AddEventDeatailWidget> {
                                   ),
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
-                                validator: _model.locationControllerValidator
+                                validator: _model.textController2Validator
                                     .asValidator(context),
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 10.0, 0.0),
-                            child: Text(
-                              'Date End',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              final _datePickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: widget.date!,
-                                firstDate: widget.date!,
-                                lastDate: DateTime(2050),
-                              );
-
-                              if (_datePickedDate != null) {
-                                setState(() {
-                                  _model.datePicked = DateTime(
-                                    _datePickedDate.year,
-                                    _datePickedDate.month,
-                                    _datePickedDate.day,
-                                  );
-                                });
-                              }
-                            },
-                            text: 'select date',
-                            icon: Icon(
-                              Icons.calendar_today,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 130.0,
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                         ],
@@ -536,31 +375,8 @@ class _AddEventDeatailWidgetState extends State<AddEventDeatailWidget> {
                                     .secondaryBackground,
                               ),
                               child: FFButtonWidget(
-                                onPressed: () async {
-                                  final eventScheduleCreateData =
-                                      createEventScheduleRecordData(
-                                    dateStart: widget.date,
-                                    dateEnd: _model.datePicked,
-                                  );
-                                  await EventScheduleRecord.collection
-                                      .doc()
-                                      .set(eventScheduleCreateData);
-
-                                  final eventDetailCreateData = {
-                                    ...createEventDetailRecordData(
-                                      title: _model.titleController.text,
-                                      description: _model.detailController.text,
-                                      createdBy: currentUserReference,
-                                      location: _model.locationController.text,
-                                      dateStart: widget.date,
-                                      dateEnd: _model.datePicked,
-                                    ),
-                                    'views': [currentUserReference],
-                                  };
-                                  await EventDetailRecord.collection
-                                      .doc()
-                                      .set(eventDetailCreateData);
-                                  Navigator.pop(context);
+                                onPressed: () {
+                                  print('Button pressed ...');
                                 },
                                 text: 'submit',
                                 options: FFButtonOptions(

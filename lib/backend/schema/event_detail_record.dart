@@ -4,16 +4,16 @@ import 'index.dart';
 import 'serializers.dart';
 import 'package:built_value/built_value.dart';
 
-part 'todo_record.g.dart';
+part 'event_detail_record.g.dart';
 
-abstract class TodoRecord implements Built<TodoRecord, TodoRecordBuilder> {
-  static Serializer<TodoRecord> get serializer => _$todoRecordSerializer;
+abstract class EventDetailRecord
+    implements Built<EventDetailRecord, EventDetailRecordBuilder> {
+  static Serializer<EventDetailRecord> get serializer =>
+      _$eventDetailRecordSerializer;
 
   String? get title;
 
   String? get description;
-
-  DateTime? get date;
 
   @BuiltValueField(wireName: 'is_done')
   bool? get isDone;
@@ -28,58 +28,72 @@ abstract class TodoRecord implements Built<TodoRecord, TodoRecordBuilder> {
 
   BuiltList<DocumentReference>? get views;
 
+  String? get location;
+
+  @BuiltValueField(wireName: 'date_start')
+  DateTime? get dateStart;
+
+  @BuiltValueField(wireName: 'date_end')
+  DateTime? get dateEnd;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
-  static void _initializeBuilder(TodoRecordBuilder builder) => builder
+  static void _initializeBuilder(EventDetailRecordBuilder builder) => builder
     ..title = ''
     ..description = ''
     ..isDone = false
     ..userImage = ''
     ..items = ListBuilder()
-    ..views = ListBuilder();
+    ..views = ListBuilder()
+    ..location = '';
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('todo');
+      FirebaseFirestore.instance.collection('event_detail');
 
-  static Stream<TodoRecord> getDocument(DocumentReference ref) => ref
+  static Stream<EventDetailRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
-  static Future<TodoRecord> getDocumentOnce(DocumentReference ref) => ref
+  static Future<EventDetailRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
       .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
-  TodoRecord._();
-  factory TodoRecord([void Function(TodoRecordBuilder) updates]) = _$TodoRecord;
+  EventDetailRecord._();
+  factory EventDetailRecord([void Function(EventDetailRecordBuilder) updates]) =
+      _$EventDetailRecord;
 
-  static TodoRecord getDocumentFromData(
+  static EventDetailRecord getDocumentFromData(
           Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
           {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
-Map<String, dynamic> createTodoRecordData({
+Map<String, dynamic> createEventDetailRecordData({
   String? title,
   String? description,
-  DateTime? date,
   bool? isDone,
   String? userImage,
   DocumentReference? createdBy,
+  String? location,
+  DateTime? dateStart,
+  DateTime? dateEnd,
 }) {
   final firestoreData = serializers.toFirestore(
-    TodoRecord.serializer,
-    TodoRecord(
-      (t) => t
+    EventDetailRecord.serializer,
+    EventDetailRecord(
+      (e) => e
         ..title = title
         ..description = description
-        ..date = date
         ..isDone = isDone
         ..userImage = userImage
         ..createdBy = createdBy
         ..items = null
-        ..views = null,
+        ..views = null
+        ..location = location
+        ..dateStart = dateStart
+        ..dateEnd = dateEnd,
     ),
   );
 

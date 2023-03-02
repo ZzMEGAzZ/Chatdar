@@ -580,75 +580,157 @@ class _AddFriendPageWidgetState extends State<AddFriendPageWidget> {
                                                                         context)
                                                                     .bodyText1,
                                                               ),
-                                                              Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        20.0,
-                                                                        0.0,
-                                                                        20.0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    final usersUpdateData =
-                                                                        {
-                                                                      'friends':
-                                                                          FieldValue
-                                                                              .arrayUnion([
-                                                                        searchFriendItem
-                                                                            .reference
-                                                                      ]),
-                                                                    };
-                                                                    await currentUserReference!
-                                                                        .update(
-                                                                            usersUpdateData);
-                                                                  },
-                                                                  text:
-                                                                      'Add Friend',
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width:
-                                                                        130.0,
-                                                                    height:
-                                                                        40.0,
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
+                                                              if (!(currentUserDocument
+                                                                          ?.friends
+                                                                          ?.toList() ??
+                                                                      [])
+                                                                  .contains(
+                                                                      searchFriendItem
+                                                                          .reference))
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          20.0),
+                                                                  child:
+                                                                      AuthUserStreamWidget(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        final usersUpdateData =
+                                                                            {
+                                                                          'friends':
+                                                                              FieldValue.arrayUnion([
+                                                                            searchFriendItem.reference
+                                                                          ]),
+                                                                        };
+                                                                        await currentUserReference!
+                                                                            .update(usersUpdateData);
+                                                                        setState(
+                                                                            () {});
+                                                                      },
+                                                                      text:
+                                                                          'Add Friend',
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        width:
+                                                                            130.0,
+                                                                        height:
+                                                                            40.0,
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
-                                                                    iconPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryColor,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .subtitle2
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Poppins',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .subtitle2
+                                                                            .override(
+                                                                              fontFamily: 'Poppins',
+                                                                              color: Colors.white,
+                                                                            ),
+                                                                        borderSide:
+                                                                            BorderSide(
                                                                           color:
-                                                                              Colors.white,
+                                                                              Colors.transparent,
+                                                                          width:
+                                                                              1.0,
                                                                         ),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      width:
-                                                                          1.0,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                      ),
                                                                     ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
                                                                   ),
                                                                 ),
-                                                              ),
+                                                              if ((currentUserDocument
+                                                                          ?.friends
+                                                                          ?.toList() ??
+                                                                      [])
+                                                                  .contains(
+                                                                      searchFriendItem
+                                                                          .reference))
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          20.0),
+                                                                  child:
+                                                                      AuthUserStreamWidget(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'ChatPage',
+                                                                          queryParams:
+                                                                              {
+                                                                            'chatUser':
+                                                                                serializeParam(
+                                                                              searchFriendItem,
+                                                                              ParamType.Document,
+                                                                            ),
+                                                                          }.withoutNulls,
+                                                                          extra: <
+                                                                              String,
+                                                                              dynamic>{
+                                                                            'chatUser':
+                                                                                searchFriendItem,
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                      text:
+                                                                          'Chat',
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        width:
+                                                                            130.0,
+                                                                        height:
+                                                                            40.0,
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .subtitle2
+                                                                            .override(
+                                                                              fontFamily: 'Poppins',
+                                                                              color: Colors.white,
+                                                                            ),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          width:
+                                                                              1.0,
+                                                                        ),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
                                                             ],
                                                           ),
                                                         );

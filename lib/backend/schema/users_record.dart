@@ -27,9 +27,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   BuiltList<DocumentReference>? get friends;
 
-  @BuiltValueField(wireName: 'todo_views')
-  BuiltList<DocumentReference>? get todoViews;
-
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -40,8 +37,7 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..photoUrl = ''
     ..uid = ''
     ..phoneNumber = ''
-    ..friends = ListBuilder()
-    ..todoViews = ListBuilder();
+    ..friends = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -82,8 +78,7 @@ Map<String, dynamic> createUsersRecordData({
         ..uid = uid
         ..createdTime = createdTime
         ..phoneNumber = phoneNumber
-        ..friends = null
-        ..todoViews = null,
+        ..friends = null,
     ),
   );
 

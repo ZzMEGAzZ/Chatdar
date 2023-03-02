@@ -1,3 +1,4 @@
+import '/components/friend/friend_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -28,6 +29,10 @@ class _PersonalplanWidgetState extends State<PersonalplanWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PersonalplanModel());
+
+    _model.titleController ??= TextEditingController();
+    _model.descriptionController ??= TextEditingController();
+    _model.locationController ??= TextEditingController();
   }
 
   @override
@@ -105,7 +110,11 @@ class _PersonalplanWidgetState extends State<PersonalplanWidget> {
                                     },
                                   ),
                                   Text(
-                                    'Heading',
+                                    valueOrDefault<String>(
+                                      dateTimeFormat(
+                                          'd/M/y', FFAppState().selectDate),
+                                      '1/1/1970',
+                                    ),
                                     style: FlutterFlowTheme.of(context).title1,
                                   ),
                                 ],
@@ -152,7 +161,7 @@ class _PersonalplanWidgetState extends State<PersonalplanWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              'Date: ',
+                              'Title: ',
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
@@ -161,12 +170,81 @@ class _PersonalplanWidgetState extends State<PersonalplanWidget> {
                                     fontWeight: FontWeight.w500,
                                   ),
                             ),
-                            Container(
-                              width: 350.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFDEC0A3),
-                                borderRadius: BorderRadius.circular(40.0),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 0.0),
+                              child: Container(
+                                width: 350.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFDEC0A3),
+                                  borderRadius: BorderRadius.circular(40.0),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 0.0, 0.0),
+                                  child: TextFormField(
+                                    controller: _model.titleController,
+                                    autofocus: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .bodyText2
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            fontSize: 20.0,
+                                          ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 20.0,
+                                        ),
+                                    validator: _model.titleControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
                               ),
                             ),
                           ],
@@ -199,9 +277,39 @@ class _PersonalplanWidgetState extends State<PersonalplanWidget> {
                                     FlutterFlowTheme.of(context).customColor1,
                                 size: 30.0,
                               ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
+                              onPressed: () async {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return Padding(
+                                      padding:
+                                          MediaQuery.of(context).viewInsets,
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.8,
+                                        child: FriendWidget(),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
                               },
+                            ),
+                            Container(
+                              width: 350.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.rectangle,
+                              ),
+                              child: ListView(
+                                padding: EdgeInsets.zero,
+                                scrollDirection: Axis.horizontal,
+                                children: [],
+                              ),
                             ),
                           ],
                         ),
@@ -229,6 +337,71 @@ class _PersonalplanWidgetState extends State<PersonalplanWidget> {
                                 color: Color(0xFFDEC0A3),
                                 borderRadius: BorderRadius.circular(40.0),
                               ),
+                              child: Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 0.0, 0.0),
+                                  child: TextFormField(
+                                    controller: _model.descriptionController,
+                                    autofocus: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .bodyText2
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            fontSize: 20.0,
+                                          ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
+                                    validator: _model
+                                        .descriptionControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -255,6 +428,66 @@ class _PersonalplanWidgetState extends State<PersonalplanWidget> {
                               decoration: BoxDecoration(
                                 color: Color(0xFFDEC0A3),
                                 borderRadius: BorderRadius.circular(40.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 0.0, 0.0),
+                                child: TextFormField(
+                                  controller: _model.locationController,
+                                  autofocus: true,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyText2
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 20.0,
+                                        ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                  ),
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  validator: _model.locationControllerValidator
+                                      .asValidator(context),
+                                ),
                               ),
                             ),
                           ],

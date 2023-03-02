@@ -15,6 +15,34 @@
       ]
     },
     {
+      "collectionGroup": "event_schedule",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "views",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "date_start",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "event_detail",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "views",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "date_start",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "chat_messages",
       "queryScope": "COLLECTION",
       "fields": [

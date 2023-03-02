@@ -1,6 +1,6 @@
-import '/components/add_event/add_event_widget.dart';
+import '/components/schedule/schedule_widget.dart';
+import '/components/start_date_picker/start_date_picker_widget.dart';
 import '/components/top_profile/top_profile_widget.dart';
-import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -8,26 +8,24 @@ import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class CalendarPageModel extends FlutterFlowModel {
+class EventPageModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   // Model for TopProfile component.
   late TopProfileModel topProfileModel;
-  // State field(s) for Calendar widget.
-  DateTimeRange? calendarSelectedDay;
+  // Model for schedule component.
+  late ScheduleModel scheduleModel;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
     topProfileModel = createModel(context, () => TopProfileModel());
-    calendarSelectedDay = DateTimeRange(
-      start: DateTime.now().startOfDay,
-      end: DateTime.now().endOfDay,
-    );
+    scheduleModel = createModel(context, () => ScheduleModel());
   }
 
   void dispose() {
     topProfileModel.dispose();
+    scheduleModel.dispose();
   }
 
   /// Additional helper methods are added here.

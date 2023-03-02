@@ -71,16 +71,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
                   DocumentReference, const [const FullType.nullable(Object)])
             ])));
     }
-    value = object.todoViews;
-    if (value != null) {
-      result
-        ..add('todo_views')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(BuiltList, const [
-              const FullType(
-                  DocumentReference, const [const FullType.nullable(Object)])
-            ])));
-    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -134,13 +124,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
                     DocumentReference, const [const FullType.nullable(Object)])
               ]))! as BuiltList<Object?>);
           break;
-        case 'todo_views':
-          result.todoViews.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(
-                    DocumentReference, const [const FullType.nullable(Object)])
-              ]))! as BuiltList<Object?>);
-          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -170,8 +153,6 @@ class _$UsersRecord extends UsersRecord {
   @override
   final BuiltList<DocumentReference<Object?>>? friends;
   @override
-  final BuiltList<DocumentReference<Object?>>? todoViews;
-  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -185,7 +166,6 @@ class _$UsersRecord extends UsersRecord {
       this.createdTime,
       this.phoneNumber,
       this.friends,
-      this.todoViews,
       this.ffRef})
       : super._();
 
@@ -207,7 +187,6 @@ class _$UsersRecord extends UsersRecord {
         createdTime == other.createdTime &&
         phoneNumber == other.phoneNumber &&
         friends == other.friends &&
-        todoViews == other.todoViews &&
         ffRef == other.ffRef;
   }
 
@@ -218,16 +197,12 @@ class _$UsersRecord extends UsersRecord {
             $jc(
                 $jc(
                     $jc(
-                        $jc(
-                            $jc(
-                                $jc($jc(0, email.hashCode),
-                                    displayName.hashCode),
-                                photoUrl.hashCode),
-                            uid.hashCode),
-                        createdTime.hashCode),
-                    phoneNumber.hashCode),
-                friends.hashCode),
-            todoViews.hashCode),
+                        $jc($jc($jc(0, email.hashCode), displayName.hashCode),
+                            photoUrl.hashCode),
+                        uid.hashCode),
+                    createdTime.hashCode),
+                phoneNumber.hashCode),
+            friends.hashCode),
         ffRef.hashCode));
   }
 
@@ -241,7 +216,6 @@ class _$UsersRecord extends UsersRecord {
           ..add('createdTime', createdTime)
           ..add('phoneNumber', phoneNumber)
           ..add('friends', friends)
-          ..add('todoViews', todoViews)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -280,12 +254,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   set friends(ListBuilder<DocumentReference<Object?>>? friends) =>
       _$this._friends = friends;
 
-  ListBuilder<DocumentReference<Object?>>? _todoViews;
-  ListBuilder<DocumentReference<Object?>> get todoViews =>
-      _$this._todoViews ??= new ListBuilder<DocumentReference<Object?>>();
-  set todoViews(ListBuilder<DocumentReference<Object?>>? todoViews) =>
-      _$this._todoViews = todoViews;
-
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -304,7 +272,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _createdTime = $v.createdTime;
       _phoneNumber = $v.phoneNumber;
       _friends = $v.friends?.toBuilder();
-      _todoViews = $v.todoViews?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -337,15 +304,12 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
               createdTime: createdTime,
               phoneNumber: phoneNumber,
               friends: _friends?.build(),
-              todoViews: _todoViews?.build(),
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'friends';
         _friends?.build();
-        _$failedField = 'todoViews';
-        _todoViews?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'UsersRecord', _$failedField, e.toString());

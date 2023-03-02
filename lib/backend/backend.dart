@@ -8,7 +8,8 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/users_record.dart';
 import 'schema/chats_record.dart';
 import 'schema/chat_messages_record.dart';
-import 'schema/todo_record.dart';
+import 'schema/event_schedule_record.dart';
+import 'schema/event_detail_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -19,7 +20,8 @@ export 'schema/serializers.dart';
 export 'schema/users_record.dart';
 export 'schema/chats_record.dart';
 export 'schema/chat_messages_record.dart';
-export 'schema/todo_record.dart';
+export 'schema/event_schedule_record.dart';
+export 'schema/event_detail_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -177,52 +179,104 @@ Future<FFFirestorePage<ChatMessagesRecord>> queryChatMessagesRecordPage({
       isStream: isStream,
     );
 
-/// Functions to query TodoRecords (as a Stream and as a Future).
-Future<int> queryTodoRecordCount({
+/// Functions to query EventScheduleRecords (as a Stream and as a Future).
+Future<int> queryEventScheduleRecordCount({
   Query Function(Query)? queryBuilder,
   int limit = -1,
 }) =>
     queryCollectionCount(
-      TodoRecord.collection,
+      EventScheduleRecord.collection,
       queryBuilder: queryBuilder,
       limit: limit,
     );
 
-Stream<List<TodoRecord>> queryTodoRecord({
+Stream<List<EventScheduleRecord>> queryEventScheduleRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      TodoRecord.collection,
-      TodoRecord.serializer,
+      EventScheduleRecord.collection,
+      EventScheduleRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<TodoRecord>> queryTodoRecordOnce({
+Future<List<EventScheduleRecord>> queryEventScheduleRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      TodoRecord.collection,
-      TodoRecord.serializer,
+      EventScheduleRecord.collection,
+      EventScheduleRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<FFFirestorePage<TodoRecord>> queryTodoRecordPage({
+Future<FFFirestorePage<EventScheduleRecord>> queryEventScheduleRecordPage({
   Query Function(Query)? queryBuilder,
   DocumentSnapshot? nextPageMarker,
   required int pageSize,
   required bool isStream,
 }) =>
     queryCollectionPage(
-      TodoRecord.collection,
-      TodoRecord.serializer,
+      EventScheduleRecord.collection,
+      EventScheduleRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query EventDetailRecords (as a Stream and as a Future).
+Future<int> queryEventDetailRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      EventDetailRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<EventDetailRecord>> queryEventDetailRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      EventDetailRecord.collection,
+      EventDetailRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<EventDetailRecord>> queryEventDetailRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      EventDetailRecord.collection,
+      EventDetailRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<EventDetailRecord>> queryEventDetailRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      EventDetailRecord.collection,
+      EventDetailRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
