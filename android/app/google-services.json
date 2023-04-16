@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1066339506605",
+    "project_id": "chatdarv2",
+    "storage_bucket": "chatdarv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066339506605:android:3d32f76c03be19a0d26924",
+        "android_client_info": {
+          "package_name": "com.mycompany.chatdarver2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066339506605-g2ukk944at8t5cuacscj4gr6rkb3gtdr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.chatdarver2",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "1066339506605-4tg787fn3hj6g89cbuqve1frug4iucgn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgOHTxnRlGYTEWLLw13mG1Wq_PLGKziCQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066339506605-4tg787fn3hj6g89cbuqve1frug4iucgn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1066339506605-1boch7mqh1o34pfj1u0q5lkk9s528jge.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.chatdarver2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
