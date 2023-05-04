@@ -223,21 +223,42 @@ class _SelectFriendWidgetState extends State<SelectFriendWidget> {
                                     : null;
                             return FFButtonWidget(
                               onPressed: () async {
-                                _model.groupChat =
-                                    await FFChatManager.instance.createChat(
-                                  _model.checkboxListTileCheckedItems
-                                      .map((e) => e.reference)
-                                      .toList(),
-                                );
-                                context.pushNamed(
-                                  'Chat',
-                                  queryParams: {
-                                    'chatRef': serializeParam(
-                                      _model.groupChat?.reference,
-                                      ParamType.DocumentReference,
-                                    ),
-                                  }.withoutNulls,
-                                );
+                                if (_model.checkboxListTileCheckedItems.length >
+                                    1) {
+                                  _model.groupChat =
+                                      await FFChatManager.instance.createChat(
+                                    _model.checkboxListTileCheckedItems
+                                        .map((e) => e.reference)
+                                        .toList(),
+                                  );
+                                  context.pushNamed(
+                                    'Chat',
+                                    queryParams: {
+                                      'chatRef': serializeParam(
+                                        _model.groupChat?.reference,
+                                        ParamType.DocumentReference,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text(' Unable to create group'),
+                                        content: Text(
+                                            'More than 1 friend is needed to create a group.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
 
                                 setState(() {});
                               },

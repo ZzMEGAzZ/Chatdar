@@ -129,20 +129,24 @@ class _EditFriendsGroupWidgetState extends State<EditFriendsGroupWidget> {
                         initialIndex: 0,
                         child: Column(
                           children: [
-                            TabBar(
-                              labelColor: FlutterFlowTheme.of(context).primary,
-                              labelStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium,
-                              indicatorColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                              tabs: [
-                                Tab(
-                                  text: 'Remove',
-                                ),
-                                Tab(
-                                  text: 'Add',
-                                ),
-                              ],
+                            Align(
+                              alignment: Alignment(0.0, 0),
+                              child: TabBar(
+                                labelColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                labelStyle:
+                                    FlutterFlowTheme.of(context).bodyMedium,
+                                indicatorColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                                tabs: [
+                                  Tab(
+                                    text: 'Remove',
+                                  ),
+                                  Tab(
+                                    text: 'Add',
+                                  ),
+                                ],
+                              ),
                             ),
                             Expanded(
                               child: TabBarView(

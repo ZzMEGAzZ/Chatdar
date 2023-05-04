@@ -147,6 +147,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                         ),
                                       ),
                                       child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
                                         onTap: () async {
                                           final selectedMedia =
                                               await selectMediaWithSourceBottomSheet(
@@ -179,6 +183,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                                 width: m
                                                                     .dimensions
                                                                     ?.width,
+                                                                blurHash:
+                                                                    m.blurHash,
                                                               ))
                                                       .toList();
 

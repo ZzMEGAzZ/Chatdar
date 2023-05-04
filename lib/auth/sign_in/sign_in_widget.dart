@@ -272,6 +272,10 @@ class _SignInWidgetState extends State<SignInWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       context.pushNamed('ForgotPassword_aye');
                                     },
@@ -376,6 +380,10 @@ class _SignInWidgetState extends State<SignInWidget> {
                       Align(
                         alignment: AlignmentDirectional(0.0, 0.0),
                         child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
                           onTap: () async {
                             context.pushNamed(
                               'SignUp',
