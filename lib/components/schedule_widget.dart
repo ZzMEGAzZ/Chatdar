@@ -81,6 +81,10 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onTap: () async {
                     await showModalBottomSheet(
                       isScrollControlled: true,
@@ -102,51 +106,91 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                     children: [
                       Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 10.0, 0.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  dateTimeFormat('d/M/y',
-                                      listViewPersonalEventRecord.dateStart!),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                                if (dateTimeFormat('d/M/y',
-                                        listViewPersonalEventRecord.dateEnd) !=
-                                    dateTimeFormat('d/M/y',
-                                        listViewPersonalEventRecord.dateStart))
+                                0.0, 0.0, 20.0, 0.0),
+                            child: Icon(
+                              Icons.settings_outlined,
+                              color: FlutterFlowTheme.of(context).tertiary,
+                              size: 24.0,
+                            ),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 0.0, 10.0, 0.0),
-                                    child: Text(
-                                      '-',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                        0.0, 10.0, 0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          dateTimeFormat(
+                                              'd/M/y',
+                                              listViewPersonalEventRecord
+                                                  .dateStart!),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                        ),
+                                        if (dateTimeFormat(
+                                                'd/M/y',
+                                                listViewPersonalEventRecord
+                                                    .dateEnd) !=
+                                            dateTimeFormat(
+                                                'd/M/y',
+                                                listViewPersonalEventRecord
+                                                    .dateStart))
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 10.0, 0.0),
+                                            child: Text(
+                                              '-',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                          ),
+                                        if (dateTimeFormat(
+                                                'd/M/y',
+                                                listViewPersonalEventRecord
+                                                    .dateEnd) !=
+                                            dateTimeFormat(
+                                                'd/M/y',
+                                                listViewPersonalEventRecord
+                                                    .dateStart))
+                                          Text(
+                                            dateTimeFormat(
+                                                'd/M/y',
+                                                listViewPersonalEventRecord
+                                                    .dateEnd!),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                      ],
                                     ),
                                   ),
-                                if (dateTimeFormat('d/M/y',
-                                        listViewPersonalEventRecord.dateEnd) !=
-                                    dateTimeFormat('d/M/y',
-                                        listViewPersonalEventRecord.dateStart))
-                                  Text(
-                                    dateTimeFormat('d/M/y',
-                                        listViewPersonalEventRecord.dateEnd!),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                              ],
-                            ),
+                                ],
+                              ),
+                            ],
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                35.0, 10.0, 15.0, 0.0),
+                                20.0, 0.0, 0.0, 0.0),
                             child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                               onTap: () async {
                                 var confirmDialogResponse =
                                     await showDialog<bool>(
@@ -182,8 +226,8 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                 }
                               },
                               child: Icon(
-                                Icons.delete,
-                                color: FlutterFlowTheme.of(context).primaryText,
+                                Icons.delete_forever_outlined,
+                                color: Colors.black,
                                 size: 24.0,
                               ),
                             ),
@@ -201,6 +245,10 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
                                 onTap: () async {
                                   await showModalBottomSheet(
                                     isScrollControlled: true,

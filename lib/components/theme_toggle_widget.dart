@@ -153,6 +153,10 @@ class _ThemeToggleWidgetState extends State<ThemeToggleWidget>
                           Align(
                             alignment: AlignmentDirectional(0.9, 0.0),
                             child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                               onTap: () async {
                                 setDarkModeSetting(context, ThemeMode.light);
                               },
@@ -228,6 +232,10 @@ class _ThemeToggleWidgetState extends State<ThemeToggleWidget>
                           Align(
                             alignment: AlignmentDirectional(-0.85, 0.0),
                             child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                               onTap: () async {
                                 setDarkModeSetting(context, ThemeMode.dark);
                               },

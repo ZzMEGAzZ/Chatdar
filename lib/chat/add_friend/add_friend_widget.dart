@@ -96,40 +96,45 @@ class _AddFriendWidgetState extends State<AddFriendWidget> {
                     initialIndex: 0,
                     child: Column(
                       children: [
-                        TabBar(
-                          labelColor: FlutterFlowTheme.of(context).primaryText,
-                          unselectedLabelColor:
-                              FlutterFlowTheme.of(context).primary,
-                          labelStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 12.0,
-                                  ),
-                          indicatorColor:
-                              FlutterFlowTheme.of(context).secondary,
-                          tabs: [
-                            Tab(
-                              text: 'Id',
-                              icon: Icon(
-                                Icons.search,
-                                size: 40.0,
+                        Align(
+                          alignment: Alignment(0.0, 0),
+                          child: TabBar(
+                            labelColor:
+                                FlutterFlowTheme.of(context).primaryText,
+                            unselectedLabelColor:
+                                FlutterFlowTheme.of(context).primary,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 12.0,
+                                ),
+                            indicatorColor:
+                                FlutterFlowTheme.of(context).secondary,
+                            tabs: [
+                              Tab(
+                                text: 'Id',
+                                icon: Icon(
+                                  Icons.search,
+                                  size: 40.0,
+                                ),
                               ),
-                            ),
-                            Tab(
-                              text: 'My QR Code',
-                              icon: Icon(
-                                Icons.qr_code,
-                                size: 40.0,
+                              Tab(
+                                text: 'My QR Code',
+                                icon: Icon(
+                                  Icons.qr_code,
+                                  size: 40.0,
+                                ),
                               ),
-                            ),
-                            Tab(
-                              text: 'Scan QR Code',
-                              icon: Icon(
-                                Icons.qr_code_scanner,
-                                size: 40.0,
+                              Tab(
+                                text: 'Scan QR Code',
+                                icon: Icon(
+                                  Icons.qr_code_scanner,
+                                  size: 40.0,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         Expanded(
                           child: TabBarView(
@@ -544,6 +549,14 @@ class _AddFriendWidgetState extends State<AddFriendWidget> {
                                                             searchFriend[
                                                                 searchFriendIndex];
                                                         return InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'Chat',

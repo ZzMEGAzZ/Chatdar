@@ -359,7 +359,8 @@ class _ShowEventDetailWidgetState extends State<ShowEventDetailWidget> {
                                     ),
                               ),
                               Text(
-                                columnPersonalEventRecord.location!,
+                                columnPersonalEventRecord.location!
+                                    .maybeHandleOverflow(maxChars: 25),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
                               ),
                             ],
